@@ -1,0 +1,7 @@
+@server = http://localhost:3000
+
+# GET {{server}}/person
+
+
+## 생성된 문서 확인
+DELETE {{server}}/person/test@test.com

@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+    //컴파일러 옵션
+        "module": "CommonJS",
+        //모듈 시스템(NestJS의 모듈 시스템은 CommonJS를 사용)
+        "target": "ESNEXT",
+        //사용할 ES 버전(최신버전)
+        "experimentalDecorators": true,
+        //데코레이터 사용여부(TypeScript 5.0 Ver부터 지원)
+        "emitDecoratorMetadata": true
+        //데코레이터의 메타 데이터를 같이 보낼지 여부)
+		//데코레이터가 설정된 클래스, 함수, 변수 객체의 메타 데이터를 함께 넣어줄 여부
+    }
+}
