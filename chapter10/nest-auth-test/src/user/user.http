@@ -5,7 +5,7 @@ content-type: application/json
 {
     "username": "test1",
     "password": "test123",
-    "email": "test1@test.com"
+    "email": "test1-test.com"
 }
 
 ### GetUser 유저 정보 찾기
@@ -22,4 +22,4 @@ content-type: application/json
 }
 
 ### Delete User 유저 삭제
-DELETE http://localhost:3000/user/delete/test1@test.com
+DELETE http://localhost:3000/user/delete/test2@test.com
