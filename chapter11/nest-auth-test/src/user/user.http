@@ -1,0 +1,25 @@
+### Create 유저 생성
+POST http://localhost:3000/user/create
+content-type: application/json
+
+{
+    "username": "test1",
+    "password": "test123",
+    "email": "test1-test.com"
+}
+
+### GetUser 유저 정보 찾기
+GET http://localhost:3000/user/getUser/test@test.com
+
+### Update User 유저 정보 업데이트
+PUT http://localhost:3000/user/update/test1@test.com
+content-type: application/json
+
+{
+    "email": "test1@test.com",
+    "username": "test2",
+    "pasword": "test1234"
+}
+
+### Delete User 유저 삭제
+DELETE http://localhost:3000/user/delete/test2@test.com
