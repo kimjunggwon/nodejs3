@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 //리포지토리 주입 데코레이터
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from './user.entitiy';
+import { User } from './user.entity';
 //리포지토리 임포트
 import { Repository } from 'typeorm';
 
@@ -38,5 +38,20 @@ export class UserService {
     //유저 정보 삭제
     deleteUser(email: any){
         return this.userRepository.delete({ email });
+    }
+
+    async findByEmailOrSave(email, username, providerId): Promise<User> {
+        const foundUser = await this.getUser(email); //이메일로 유저를 찾음
+        if(foundUser){
+            return foundUser;
+        }
+        //찾으면 유저 정보를 반환
+
+        const newUser = await this.userRepository.save({ //유저 정보가 없으면 저장
+            email,
+            username,
+            providerId,
+        });
+        return newUser; //저장 후 유저 정보 반환
     }
 }
