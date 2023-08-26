@@ -1,0 +1,57 @@
+<style>
+    .message {
+        width: 300px;
+        color: #fff;
+        background-color: purple;
+        margin-top: 5px;
+        padding: 5px;
+    }
+</style>
+<body>
+    <textarea id="message" cols="50" rows="5"></textarea>
+    <br>
+
+    <button onclick="sendMessage();">전송</button>
+    <button onclick="webSocketClose();">종료</button>
+    <div id="message"></div>
+</body>
+
+<script>
+    //웹 소켓 연결
+    const ws = new WebSocket('ws://localhost:3000');
+
+    //send 함수로 메시지 발송
+    function sendMessage(){
+        ws.send(document.getElementById('message').value);
+    }
+
+    //웹 소켓 연결 종료
+    function webSocketClose(){
+        console.log('종료 누름');
+        ws.close();
+    }
+
+    //WebSocket의 Open 이벤트 핸들러
+    ws.onopen = function(){
+        console.log('클라이언트 접속 완료!');
+    }
+
+    //WebSocket의 message 이벤트 핸들러. 서버에서 메시지 수신 시 실행
+    ws.onmessage = function(event){
+        //엔터 키를 <br /> 태그로 변경
+        let message = event.data.replace(/(\r\n|\n|\r)/g, "<br />");
+        //div 태그 생성
+        let el = document.createElement('div');
+        //<div>{메시지}</div>값이 됨. HTML로 파싱
+        el.innerHTML = message;
+        //<div class='message'>{메시지}</div>값이 됨
+        el.className = 'message';
+        //message 요소에 추가
+        document.getElementById('message').append(el);
+    }
+
+    ws.onclose = function(e){
+        console.log("종료");
+        document.getElementById('messages').append("서버 접속 종료");
+    }
+</script>
